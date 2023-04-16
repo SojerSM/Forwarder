@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sojerdev.forwarder.driver.Driver;
 import com.sojerdev.forwarder.forwarder.Forwarder;
+import com.sojerdev.forwarder.freight.Freight;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name="carriage")
@@ -29,6 +32,10 @@ public class Carriage {
     @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "carriage")
     private Driver driver;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "carriage", cascade = CascadeType.ALL)
+    private List<Freight> freights;
 
     public Carriage() {}
 
