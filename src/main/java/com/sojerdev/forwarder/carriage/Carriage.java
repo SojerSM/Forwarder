@@ -1,6 +1,8 @@
 package com.sojerdev.forwarder.carriage;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sojerdev.forwarder.driver.Driver;
 import com.sojerdev.forwarder.forwarder.Forwarder;
 import jakarta.persistence.*;
 
@@ -23,6 +25,10 @@ public class Carriage {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="forwarder_id")
     private Forwarder forwarder;
+
+    @JsonManagedReference
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "carriage")
+    private Driver driver;
 
     public Carriage() {}
 
