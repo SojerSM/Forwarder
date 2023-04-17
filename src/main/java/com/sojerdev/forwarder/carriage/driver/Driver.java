@@ -1,4 +1,4 @@
-package com.sojerdev.forwarder.driver;
+package com.sojerdev.forwarder.carriage.driver;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -8,12 +8,12 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="driver_data")
+@Table(name="driver")
 public class Driver {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="driver_id")
+    @Column(name="id")
     private int id;
 
     @Column(name="first_name")
@@ -24,6 +24,9 @@ public class Driver {
 
     @Column(name="dob")
     private Date dob;
+
+    @Column(name="salary")
+    private double salary;
 
     @JsonBackReference
     @OneToOne(fetch = FetchType.LAZY)
@@ -63,5 +66,27 @@ public class Driver {
         this.lastName = lastName;
     }
 
+    public Date getDob() {
+        return dob;
+    }
 
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    public Carriage getCarriage() {
+        return carriage;
+    }
+
+    public void setCarriage(Carriage carriage) {
+        this.carriage = carriage;
+    }
 }

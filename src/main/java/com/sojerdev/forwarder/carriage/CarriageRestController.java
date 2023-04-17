@@ -1,5 +1,7 @@
 package com.sojerdev.forwarder.carriage;
 
+import com.sojerdev.forwarder.carriage.driver.Driver;
+import com.sojerdev.forwarder.carriage.driver.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,10 +12,12 @@ import java.util.List;
 public class CarriageRestController {
 
     private CarriageService carriageService;
+    private DriverService driverService;
 
     @Autowired
-    public CarriageRestController(CarriageService carriageService) {
+    public CarriageRestController(CarriageService carriageService, DriverService driverService) {
         this.carriageService = carriageService;
+        this.driverService = driverService;
     }
 
     @GetMapping("/carriages")
@@ -31,15 +35,20 @@ public class CarriageRestController {
         return carriage;
     }
 
+    @GetMapping("/carriages/{carriageId}/driver")
+    public Driver find(@PathVariable int carriageId) {
+        return driverService.findByCarriageId(carriageId);
+    }
+
     @PostMapping("/carriages")
     public void addCarriage(@RequestBody Carriage carriage) {
-        carriage.setCarriageId(0);
+        carriage.setId(0);
         carriageService.save(carriage);
     }
 
     @PutMapping("/carriages")
     public void updateCarriage(@RequestBody Carriage carriage) {
-        Carriage prevCarriage = carriageService.findById(carriage.getCarriageId());
+        Carriage prevCarriage = carriageService.findById(carriage.getId());
 
         // update everything except current carriage driver
         carriageService.save(carriage);

@@ -2,9 +2,9 @@ package com.sojerdev.forwarder.carriage;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.sojerdev.forwarder.driver.Driver;
+import com.sojerdev.forwarder.carriage.driver.Driver;
 import com.sojerdev.forwarder.forwarder.Forwarder;
-import com.sojerdev.forwarder.freight.Freight;
+import com.sojerdev.forwarder.carriage.freight.Freight;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -15,8 +15,8 @@ public class Carriage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="carriage_id")
-    private int carriageId;
+    @Column(name="id")
+    private int id;
 
     @Column(name="plates")
     private String plates;
@@ -45,12 +45,12 @@ public class Carriage {
         this.forwarder = forwarder;
     }
 
-    public int getCarriageId() {
-        return carriageId;
+    public int getId() {
+        return id;
     }
 
-    public void setCarriageId(int carriageId) {
-        this.carriageId = carriageId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPlates() {

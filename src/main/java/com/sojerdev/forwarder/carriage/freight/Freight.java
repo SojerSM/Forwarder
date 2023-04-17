@@ -1,4 +1,4 @@
-package com.sojerdev.forwarder.freight;
+package com.sojerdev.forwarder.carriage.freight;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sojerdev.forwarder.carriage.Carriage;
@@ -10,8 +10,8 @@ public class Freight {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="freight_id")
-    private int freightId;
+    @Column(name="id")
+    private int id;
 
     @Column(name="distance")
     private int distance;
@@ -36,12 +36,12 @@ public class Freight {
         this.carriage = carriage;
     }
 
-    public int getFreightId() {
-        return freightId;
+    public int getId() {
+        return id;
     }
 
-    public void setFreightId(int freightId) {
-        this.freightId = freightId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getDistance() {

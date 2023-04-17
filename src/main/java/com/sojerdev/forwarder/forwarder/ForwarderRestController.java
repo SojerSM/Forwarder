@@ -34,13 +34,13 @@ public class ForwarderRestController {
     @PostMapping("/forwarders")
     public void addForwarder(@RequestBody Forwarder forwarder) {
         // in case to force save method instead of update
-        forwarder.setForwarderId(0);
+        forwarder.setId(0);
         forwarderService.save(forwarder);
     }
 
     @PutMapping("/forwarders")
     public void updateForwarder(@RequestBody Forwarder forwarder) {
-        Forwarder prevForwarder = forwarderService.findById(forwarder.getForwarderId());
+        Forwarder prevForwarder = forwarderService.findById(forwarder.getId());
 
         // update everything except carriages list - change person data not linked vehicles
         forwarder.setCarriages(prevForwarder.getCarriages());

@@ -14,8 +14,8 @@ public class Forwarder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="forwarder_id")
-    private int forwarderId;
+    @Column(name="id")
+    private int id;
 
     @Column(name="first_name")
     private String firstName;
@@ -39,12 +39,12 @@ public class Forwarder {
         this.carriages = carriages;
     }
 
-    public int getForwarderId() {
-        return forwarderId;
+    public int getId() {
+        return id;
     }
 
-    public void setForwarderId(int forwarderId) {
-        this.forwarderId = forwarderId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {
