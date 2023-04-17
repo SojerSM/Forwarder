@@ -25,8 +25,8 @@ public class Driver {
     @Column(name="dob")
     private Date dob;
 
-    @Column(name="salary")
-    private double salary;
+    @Column(name="licence_number")
+    private String licenceNumber;
 
     @JsonBackReference
     @OneToOne(fetch = FetchType.LAZY)
@@ -35,11 +35,12 @@ public class Driver {
 
     public Driver() {}
 
-    public Driver(String firstName, String lastName, Carriage carriage, Date dob) {
+    public Driver(String firstName, String lastName, Carriage carriage, Date dob, String licenceNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.carriage = carriage;
         this.dob = dob;
+        this.licenceNumber = licenceNumber;
     }
 
     public int getId() {
@@ -74,12 +75,12 @@ public class Driver {
         this.dob = dob;
     }
 
-    public double getSalary() {
-        return salary;
+    public String getLicenceNumber() {
+        return licenceNumber;
     }
 
-    public void setSalary(double salary) {
-        this.salary = salary;
+    public void setLicenceNumber(String licenceNumber) {
+        this.licenceNumber = licenceNumber;
     }
 
     public Carriage getCarriage() {

@@ -13,6 +13,9 @@ public class Freight {
     @Column(name="id")
     private int id;
 
+    @Column(name="order_number")
+    private String orderNumber;
+
     @Column(name="distance")
     private int distance;
 
@@ -29,7 +32,8 @@ public class Freight {
 
     public Freight() {}
 
-    public Freight(int distance, String companyName, double value, Carriage carriage) {
+    public Freight(String orderNumber, int distance, String companyName, double value, Carriage carriage) {
+        this.orderNumber = orderNumber;
         this.distance = distance;
         this.companyName = companyName;
         this.value = value;
@@ -42,6 +46,14 @@ public class Freight {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     public int getDistance() {
