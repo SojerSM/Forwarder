@@ -1,7 +1,9 @@
 package com.sojerdev.forwarder.carriage;
 
+import com.sojerdev.forwarder.carriage.driver.Driver;
+import com.sojerdev.forwarder.carriage.driver.DriverService;
 import com.sojerdev.forwarder.carriage.freight.Freight;
-import com.sojerdev.forwarder.carriage.freight.FreightRepository;
+import com.sojerdev.forwarder.carriage.freight.FreightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +15,14 @@ import java.util.Optional;
 public class CarriageServiceImpl implements CarriageService{
 
     private CarriageRepository carriageRepository;
-    private FreightRepository freightRepository;
+    private FreightService freightService;
+    private DriverService driverService;
 
     @Autowired
-    public CarriageServiceImpl(CarriageRepository carriageRepository, FreightRepository freightRepository) {
+    public CarriageServiceImpl(CarriageRepository carriageRepository, FreightService freightService, DriverService driverService) {
         this.carriageRepository = carriageRepository;
-        this.freightRepository = freightRepository;
+        this.freightService = freightService;
+        this.driverService = driverService;
     }
 
     @Override
@@ -37,7 +41,6 @@ public class CarriageServiceImpl implements CarriageService{
         } else {
             throw new RuntimeException("Carriage with id - " + id + " was not found.");
         }
-
         return carriage;
     }
 
@@ -55,11 +58,30 @@ public class CarriageServiceImpl implements CarriageService{
     public List<Freight> findBelongingFreights(int id) {
         List<Freight> freights = new ArrayList<>();
 
-        for (Freight freight: freightRepository.findAll()) {
+        for (Freight freight: freightService.findAll()) {
             if (freight.getCarriage().getId() == id) {
                 freights.add(freight);
             }
         }
         return freights;
+    }
+
+    @Override
+    public Driver findByCarriageId(int carriageId) {
+        List<Driver> drivers = driverService.findAll();
+        Driver driver = null;
+
+        for (Driver d: drivers) {
+            if (d.getCarriage().getId() == carriageId) {
+                driver = d;
+            }
+        }
+
+        findById(carriageId);
+
+        if (driver == null) {
+            throw new RuntimeException("There is no driver assigned to carriage with id " + carriageId);
+        }
+        return driver;
     }
 }

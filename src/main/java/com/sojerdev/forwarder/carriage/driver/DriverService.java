@@ -8,8 +8,6 @@ public interface DriverService {
 
     Driver findById(int id);
 
-    Driver findByCarriageId(int carriageId);
-
     void save(Driver driver);
 
     void delete(int id);

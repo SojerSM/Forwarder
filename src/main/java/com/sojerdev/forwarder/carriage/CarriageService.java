@@ -1,5 +1,6 @@
 package com.sojerdev.forwarder.carriage;
 
+import com.sojerdev.forwarder.carriage.driver.Driver;
 import com.sojerdev.forwarder.carriage.freight.Freight;
 
 import java.util.List;
@@ -15,4 +16,7 @@ public interface CarriageService {
     void deleteById(int id);
 
     List<Freight> findBelongingFreights(int id);
+
+    Driver findByCarriageId(int carriageId);
+
 }

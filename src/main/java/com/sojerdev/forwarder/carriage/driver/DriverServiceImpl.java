@@ -35,24 +35,6 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public Driver findByCarriageId(int carriageId) {
-        List<Driver> drivers = findAll();
-        Driver driver = null;
-
-        for (Driver d: drivers) {
-            if (d.getId() == carriageId) {
-                driver = d;
-            }
-        }
-
-        if (driver == null) {
-            throw new RuntimeException("There is no driver assigned to carriage with id - " + carriageId);
-        }
-
-        return driver;
-    }
-
-    @Override
     public void save(Driver driver) {
         driverRepository.save(driver);
     }
