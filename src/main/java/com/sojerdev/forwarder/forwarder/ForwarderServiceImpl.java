@@ -2,6 +2,7 @@ package com.sojerdev.forwarder.forwarder;
 
 import com.sojerdev.forwarder.carriage.freight.Freight;
 import com.sojerdev.forwarder.carriage.freight.FreightService;
+import com.sojerdev.forwarder.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +39,7 @@ public class ForwarderServiceImpl implements ForwarderService {
         if (result.isPresent()) {
             forwarder = result.get();
         } else {
-            throw new RuntimeException("Forwarder with id - " + id + " was not found.");
+            throw new NotFoundException("Forwarder with id - " + id + " was not found.");
         }
 
         return forwarder;
@@ -52,7 +53,7 @@ public class ForwarderServiceImpl implements ForwarderService {
     @Override
     public void deleteById(int id) {
         if (findById(id) == null) {
-            throw new RuntimeException("Forwarder with id - " + id + " was not found.");
+            throw new NotFoundException("Forwarder with id - " + id + " was not found.");
         }
         forwarderRepository.deleteById(id);
     }
@@ -60,7 +61,7 @@ public class ForwarderServiceImpl implements ForwarderService {
     @Override
     public ResponseEntity<Object> getTotalValue(int id) {
         if (findById(id) == null) {
-            throw new RuntimeException("Forwarder with id - " + id + " was not found.");
+            throw new NotFoundException("Forwarder with id - " + id + " was not found.");
         }
         List<Freight> freights = freightService.findAll();
         int totalValue = 0;

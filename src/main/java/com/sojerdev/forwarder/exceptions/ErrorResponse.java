@@ -1,4 +1,4 @@
-package com.sojerdev.forwarder.exception;
+package com.sojerdev.forwarder.exceptions;
 
 public class ErrorResponse {
 
