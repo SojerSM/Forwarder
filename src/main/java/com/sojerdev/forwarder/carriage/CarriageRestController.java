@@ -2,6 +2,8 @@ package com.sojerdev.forwarder.carriage;
 
 import com.sojerdev.forwarder.carriage.driver.Driver;
 import com.sojerdev.forwarder.carriage.driver.DriverService;
+import com.sojerdev.forwarder.carriage.freight.Freight;
+import com.sojerdev.forwarder.carriage.freight.FreightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,11 +15,13 @@ public class CarriageRestController {
 
     private CarriageService carriageService;
     private DriverService driverService;
+    private FreightService freightService;
 
     @Autowired
-    public CarriageRestController(CarriageService carriageService, DriverService driverService) {
+    public CarriageRestController(CarriageService carriageService, DriverService driverService, FreightService freightService) {
         this.carriageService = carriageService;
         this.driverService = driverService;
+        this.freightService = freightService;
     }
 
     @GetMapping("/carriages")
@@ -36,8 +40,13 @@ public class CarriageRestController {
     }
 
     @GetMapping("/carriages/{carriageId}/driver")
-    public Driver find(@PathVariable int carriageId) {
+    public Driver findDriver(@PathVariable int carriageId) {
         return driverService.findByCarriageId(carriageId);
+    }
+
+    @GetMapping("/carriages/{carriageId}/freights")
+    public List<Freight> findFreights(@PathVariable int carriageId) {
+        return carriageService.findBelongingFreights(carriageId);
     }
 
     @PostMapping("/carriages")

@@ -23,12 +23,7 @@ public class ForwarderRestController {
 
     @GetMapping("/forwarders/{forwarderId}")
     public Forwarder findById(@PathVariable int forwarderId) {
-        Forwarder forwarder = forwarderService.findById(forwarderId);
-
-        if (forwarder == null) {
-            throw new RuntimeException("Exception");
-        }
-        return forwarder;
+        return forwarderService.findById(forwarderId);
     }
 
     @PostMapping("/forwarders")

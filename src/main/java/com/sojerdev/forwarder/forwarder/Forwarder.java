@@ -27,7 +27,7 @@ public class Forwarder {
     private Date dob;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "forwarder", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "forwarder", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Carriage> carriages = new ArrayList<>();
 
     public Forwarder() {}

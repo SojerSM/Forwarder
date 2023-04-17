@@ -76,4 +76,20 @@ public class Carriage {
     public void setForwarder(Forwarder forwarder) {
         this.forwarder = forwarder;
     }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
+
+    public List<Freight> getFreights() {
+        return freights;
+    }
+
+    public void setFreights(List<Freight> freights) {
+        this.freights = freights;
+    }
 }

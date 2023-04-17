@@ -1,5 +1,7 @@
 package com.sojerdev.forwarder.carriage;
 
+import com.sojerdev.forwarder.carriage.freight.Freight;
+
 import java.util.List;
 
 public interface CarriageService {
@@ -11,4 +13,6 @@ public interface CarriageService {
     void save(Carriage carriage);
 
     void deleteById(int id);
+
+    List<Freight> findBelongingFreights(int id);
 }

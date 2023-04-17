@@ -1,8 +1,11 @@
 package com.sojerdev.forwarder.carriage;
 
+import com.sojerdev.forwarder.carriage.freight.Freight;
+import com.sojerdev.forwarder.carriage.freight.FreightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,10 +13,12 @@ import java.util.Optional;
 public class CarriageServiceImpl implements CarriageService{
 
     private CarriageRepository carriageRepository;
+    private FreightRepository freightRepository;
 
     @Autowired
-    public CarriageServiceImpl(CarriageRepository carriageRepository) {
+    public CarriageServiceImpl(CarriageRepository carriageRepository, FreightRepository freightRepository) {
         this.carriageRepository = carriageRepository;
+        this.freightRepository = freightRepository;
     }
 
     @Override
@@ -44,5 +49,17 @@ public class CarriageServiceImpl implements CarriageService{
     @Override
     public void deleteById(int id) {
         carriageRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Freight> findBelongingFreights(int id) {
+        List<Freight> freights = new ArrayList<>();
+
+        for (Freight freight: freightRepository.findAll()) {
+            if (freight.getCarriage().getId() == id) {
+                freights.add(freight);
+            }
+        }
+        return freights;
     }
 }
