@@ -1,5 +1,7 @@
 package com.sojerdev.forwarder.forwarder;
 
+import org.springframework.http.ResponseEntity;
+
 import java.util.List;
 
 public interface ForwarderService {
@@ -11,4 +13,6 @@ public interface ForwarderService {
     void save(Forwarder forwarder);
 
     void deleteById(int id);
+
+    ResponseEntity<Object> getTotalValue(int id);
 }

@@ -1,6 +1,7 @@
 package com.sojerdev.forwarder.forwarder;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +25,11 @@ public class ForwarderRestController {
     @GetMapping("/forwarders/{forwarderId}")
     public Forwarder findById(@PathVariable int forwarderId) {
         return forwarderService.findById(forwarderId);
+    }
+
+    @GetMapping("/forwarders/{forwarderId}/value")
+    public ResponseEntity<Object> getTotalValue(@PathVariable int forwarderId) {
+        return forwarderService.getTotalValue(forwarderId);
     }
 
     @PostMapping("/forwarders")
