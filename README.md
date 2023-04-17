@@ -15,43 +15,43 @@ Primary endpoint `/api/forwarders` returns following response:
 
 ```json
 {
-  "id": 2,
-  "firstName": "Maciej",
-  "lastName": "Chrust",
-  "dob": "1965-05-18T23:00:00.000+00:00",
-  "carriages": [
-    {
-      "id": 3,
-      "plates": "ZS845PT",
-      "pricePerKm": 0.55,
-      "driver": {
-        "id": 5,
-        "firstName": "Krystian",
-        "lastName": "Marciniak",
-        "dob": "1987-09-11T22:00:00.000+00:00",
-        "licenceNumber": "PDTWU234A/2008"
-      },
-      "freights": [
+    "id": 2,
+    "firstName": "Maciej",
+    "lastName": "Chrust",
+    "dob": "1965-05-18T23:00:00.000+00:00",
+    "carriages": [
         {
-          "id": 6,
-          "orderNumber": "FAV/556/2023",
-          "distance": 1245,
-          "companyName": "Morrison Freight",
-          "value": 690
+            "id": 3,
+            "plates": "ZS845PT",
+            "pricePerKm": 0.55,
+            "driver": {
+                "id": 5,
+                "firstName": "Krystian",
+                "lastName": "Marciniak",
+                "dob": "1987-09-11T22:00:00.000+00:00",
+                "licenceNumber": "PDTWU234A/2008"
+            },
+            "freights": [
+                {
+                    "id": 6,
+                    "orderNumber": "FAV/556/2023",
+                    "distance": 1245,
+                    "companyName": "Morrison Freight",
+                    "value": 690
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }
 ```
 Specific forwarder data returned by `/api/forwarders/{forwarderId}` with response:
 ```json
 {
-  "id": 3,
-  "firstName": "Kamil",
-  "lastName": "Wójcik",
-  "dob": "1976-11-09T23:00:00.000+00:00",
-  "carriages": []
+    "id": 3,
+    "firstName": "Kamil",
+    "lastName": "Wójcik",
+    "dob": "1976-11-09T23:00:00.000+00:00",
+    "carriages": []
 }
 ```
 POST and PUT methods are managed by default by one endpoint `/api/forwarders`. In order to actually add new forwarder instead of update, it's necessary to set request body id as `0`.
@@ -71,27 +71,27 @@ At the moment it's also possible to get information about total value of freight
 First, general response `/api/carriages` with following response:
 ```json
 [
-  {
-    "id": 1,
-    "plates": "ZS198GT",
-    "pricePerKm": 0.55,
-    "driver": {},
-    "freights": []
-  },
-  {
-    "id": 2,
-    "plates": "ZST998Y",
-    "pricePerKm": 0.53,
-    "driver": {},
-    "freights": []
-  },
-  {
-    "id": 3,
-    "plates": "ZS845PT",
-    "pricePerKm": 0.55,
-    "driver": {},
-    "freights": []
-  }
+    {
+        "id": 1,
+        "plates": "ZS198GT",
+        "pricePerKm": 0.55,
+        "driver": {},
+        "freights": []
+    },
+    {
+        "id": 2,
+        "plates": "ZST998Y",
+        "pricePerKm": 0.53,
+        "driver": {},
+        "freights": []
+    },
+    {
+        "id": 3,
+        "plates": "ZS845PT",
+        "pricePerKm": 0.55,
+        "driver": {},
+        "freights": []
+    }
 ]
 ```
 To get specific carriage `/api/carriage/{carriageId}`.
