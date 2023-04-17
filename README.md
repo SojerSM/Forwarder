@@ -14,35 +14,58 @@ There are few entities connected in one structure. At the top `Forwarder` take h
 Primary endpoint `/api/forwarders` returns following response:
 
 ```json
-{
-    "id": 2,
-    "firstName": "Maciej",
-    "lastName": "Chrust",
-    "dob": "1965-05-18T23:00:00.000+00:00",
-    "carriages": [
+[
+    {
+        "id": 1,
+        "firstName": "Piotr",
+        "lastName": "Nowak",
+        "dob": "1968-08-09T23:00:00.000+00:00",
+        "carriages": [
         {
-            "id": 3,
-            "plates": "ZS845PT",
+            "id": 1,
+            "plates": "ZS198GT",
             "pricePerKm": 0.55,
             "driver": {
-                "id": 5,
-                "firstName": "Krystian",
-                "lastName": "Marciniak",
-                "dob": "1987-09-11T22:00:00.000+00:00",
-                "licenceNumber": "PDTWU234A/2008"
+                "id": 1,
+                "firstName": "Marcin",
+                "lastName": "Nowak",
+                "dob": "1976-11-09T23:00:00.000+00:00",
+                "licenceNumber": "PDTY7823W/2016"
             },
             "freights": [
                 {
-                    "id": 6,
-                    "orderNumber": "FAV/556/2023",
-                    "distance": 1245,
-                    "companyName": "Morrison Freight",
-                    "value": 690
+                    "id": 1,
+                    "orderNumber": "FAV/954/2022",
+                    "distance": 456,
+                    "companyName": "TSL LOGISTICS",
+                    "value": 320.0
+                },
+                {
+                    "id": 2,
+                    "orderNumber": "NO65/AWD/2022",
+                    "distance": 567,
+                    "companyName": "FERCAM AUSTRIA GMBH",
+                    "value": 385.0
                 }
             ]
-        }
-    ]
-}
+        }]
+    },
+    {
+        "id": 2,
+        "firstName": "Maciej",
+        "lastName": "Chrust",
+        "dob": "1965-05-18T23:00:00.000+00:00",
+        "carriages": [
+            {
+                "id": 3,
+                "plates": "ZS845PT",
+                "pricePerKm": 0.55,
+                "driver": null,
+                "freights": []
+            }
+        ]
+    }
+]
 ```
 Specific forwarder data returned by `/api/forwarders/{forwarderId}` with response:
 ```json
