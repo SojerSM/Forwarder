@@ -40,7 +40,7 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public void delete(int id) {
+    public void deleteById(int id) {
         driverRepository.deleteById(id);
     }
 }

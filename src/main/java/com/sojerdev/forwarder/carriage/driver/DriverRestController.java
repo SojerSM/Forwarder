@@ -39,7 +39,7 @@ public class DriverRestController {
     }
 
     @DeleteMapping("/drivers/{driverId}")
-    public void delete(@PathVariable int id) {
-        driverService.delete(id);
+    public void delete(@PathVariable int driverId) {
+        driverService.deleteById(driverId);
     }
 }

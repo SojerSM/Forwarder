@@ -10,5 +10,5 @@ public interface DriverService {
 
     void save(Driver driver);
 
-    void delete(int id);
+    void deleteById(int id);
 }

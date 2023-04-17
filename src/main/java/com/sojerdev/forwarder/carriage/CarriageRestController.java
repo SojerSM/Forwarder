@@ -3,6 +3,7 @@ package com.sojerdev.forwarder.carriage;
 import com.sojerdev.forwarder.carriage.driver.Driver;
 import com.sojerdev.forwarder.carriage.freight.Freight;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,6 +44,11 @@ public class CarriageRestController {
         return carriageService.findBelongingFreights(carriageId);
     }
 
+    @GetMapping("/carriages/{carriageId}/value")
+    public ResponseEntity<Object> getValues(@PathVariable int carriageId) {
+        return carriageService.getValues(carriageId);
+    }
+
     @PostMapping("/carriages")
     public void addCarriage(@RequestBody Carriage carriage) {
         carriage.setId(0);
@@ -58,7 +64,7 @@ public class CarriageRestController {
     }
 
     @DeleteMapping("/carriages/{carriageId}")
-    public void deleteCarriage(@PathVariable int carriageId) {
-        carriageService.deleteById(carriageId);
+    public void deleteCarriage(@PathVariable int id) {
+        carriageService.deleteById(id);
     }
 }
