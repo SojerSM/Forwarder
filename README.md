@@ -15,56 +15,84 @@ Primary endpoint `/api/forwarders` returns following response:
 
 ```json
 [
-    {
+  {
+    "id": 1,
+    "firstName": "Piotr",
+    "lastName": "Nowak",
+    "dob": "1968-08-09T23:00:00.000+00:00",
+    "carriages": [
+      {
         "id": 1,
-        "firstName": "Piotr",
-        "lastName": "Nowak",
-        "dob": "1968-08-09T23:00:00.000+00:00",
-        "carriages": [
-        {
+        "plates": "ZS198GT",
+        "pricePerKm": 0.55,
+        "adr": true,
+        "driver": {
+          "id": 1,
+          "firstName": "Marcin",
+          "lastName": "Nowak",
+          "dob": "1976-11-09T23:00:00.000+00:00",
+          "licenceNumber": "PDTY7823W/2016"
+        },
+        "freights": [
+          {
             "id": 1,
-            "plates": "ZS198GT",
-            "pricePerKm": 0.55,
-            "driver": {
-                "id": 1,
-                "firstName": "Marcin",
-                "lastName": "Nowak",
-                "dob": "1976-11-09T23:00:00.000+00:00",
-                "licenceNumber": "PDTY7823W/2016"
-            },
-            "freights": [
-                {
-                    "id": 1,
-                    "orderNumber": "FAV/954/2022",
-                    "distance": 456,
-                    "companyName": "TSL LOGISTICS",
-                    "value": 320.0
-                },
-                {
-                    "id": 2,
-                    "orderNumber": "NO65/AWD/2022",
-                    "distance": 567,
-                    "companyName": "FERCAM AUSTRIA GMBH",
-                    "value": 385.0
-                }
-            ]
-        }]
-    },
-    {
-        "id": 2,
-        "firstName": "Maciej",
-        "lastName": "Chrust",
-        "dob": "1965-05-18T23:00:00.000+00:00",
-        "carriages": [
-            {
-                "id": 3,
-                "plates": "ZS845PT",
-                "pricePerKm": 0.55,
-                "driver": null,
-                "freights": []
-            }
+            "orderNumber": "FAV/954/2022",
+            "distance": 456,
+            "companyName": "TSL LOGISTICS",
+            "value": 320.0,
+            "adr": false
+          },
+          {
+            "id": 2,
+            "orderNumber": "NO65/AWD/2022",
+            "distance": 567,
+            "companyName": "FERCAM AUSTRIA GMBH",
+            "value": 385.0,
+            "adr": false
+          }
         ]
-    }
+      },
+      {
+        "id": 2,
+        "plates": "ZST998Y",
+        "pricePerKm": 0.53,
+        "adr": false,
+        "driver": {
+          "id": 2,
+          "firstName": "Krystian",
+          "lastName": "Marciniak",
+          "dob": "1987-09-11T22:00:00.000+00:00",
+          "licenceNumber": "PDTWU234A/2008"
+        },
+        "freights": [
+          {
+            "id": 3,
+            "orderNumber": "FV/12/2023",
+            "distance": 985,
+            "companyName": "FERCAM AUSTRIA GMBH",
+            "value": 590.0,
+            "adr": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "firstName": "Maciej",
+    "lastName": "Chrust",
+    "dob": "1965-05-18T23:00:00.000+00:00",
+    "carriages": [
+      {
+        "id": 3,
+        "plates": "ZS845PT",
+        "pricePerKm": 0.55,
+        "adr": false,
+        "driver": null,
+        "freights": []
+      }
+    ]
+  }
 ]
 ```
 Specific forwarder data returned by `/api/forwarders/{forwarderId}` with response:
@@ -98,6 +126,7 @@ First, general response `/api/carriages` with following response:
         "id": 1,
         "plates": "ZS198GT",
         "pricePerKm": 0.55,
+        "adr": true,
         "driver": {},
         "freights": []
     },
@@ -105,6 +134,7 @@ First, general response `/api/carriages` with following response:
         "id": 2,
         "plates": "ZST998Y",
         "pricePerKm": 0.53,
+        "adr": false,
         "driver": {},
         "freights": []
     },
@@ -112,6 +142,7 @@ First, general response `/api/carriages` with following response:
         "id": 3,
         "plates": "ZS845PT",
         "pricePerKm": 0.55,
+        "adr": false,
         "driver": {},
         "freights": []
     }
@@ -123,6 +154,7 @@ To get specific carriage `/api/carriage/{carriageId}`.
     "id": 1,
     "plates": "ZS198GT",
     "pricePerKm": 0.55,
+    "adr": true,
     "driver": {
         "id": 1,
         "firstName": "Marcin",
@@ -136,14 +168,16 @@ To get specific carriage `/api/carriage/{carriageId}`.
             "orderNumber": "FAV/954/2022",
             "distance": 456,
             "companyName": "TSL LOGISTICS",
-            "value": 320.0
+            "value": 320.0,
+            "adr": false
         },
         {
             "id": 2,
             "orderNumber": "NO65/AWD/2022",
             "distance": 567,
             "companyName": "FERCAM AUSTRIA GMBH",
-            "value": 385.0
+            "value": 385.0,
+            "adr": true
         }
     ]
 }
@@ -171,7 +205,8 @@ as well as requesting `/api/carriages/{carriageId}/freights` for list of freight
         "orderNumber": "FAV/556/2023",
         "distance": 1245,
         "companyName": "Morrison Freight",
-        "value": 690.0
+        "value": 690.0,
+        "adr": true
     }
 ]
 ```
@@ -194,21 +229,24 @@ General request for list of all freights `/api/freights` with response:
         "orderNumber": "FAV/954/2022",
         "distance": 456,
         "companyName": "TSL LOGISTICS",
-        "value": 320.0
+        "value": 320.0,
+        "adr": false
     },
     {
         "id": 2,
         "orderNumber": "NO65/AWD/2022",
         "distance": 567,
         "companyName": "FERCAM AUSTRIA GMBH",
-        "value": 385.0
+        "value": 385.0,
+        "adr": false
     },
     {
         "id": 3,
         "orderNumber": "TR/443A/2021",
         "distance": 2521,
         "companyName": "ROYAL TRANSPORT",
-        "value": 1420.0
+        "value": 1420.0,
+        "adr": true
     }
 ]
 ```
@@ -219,7 +257,8 @@ To get specific freight info `/api/freights/{freightId}`.
     "orderNumber": "FAV/954/2022",
     "distance": 456,
     "companyName": "TSL LOGISTICS",
-    "value": 320.0
+    "value": 320.0,
+    "adr": false
 }
 ```
 POST / PUT same as before `/api/freights` with request body id of "0" if evoke of save method expected or no id but with `foreign id` of linked carriage.
