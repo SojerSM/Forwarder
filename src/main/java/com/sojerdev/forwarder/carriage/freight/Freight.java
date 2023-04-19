@@ -79,7 +79,6 @@ public class Freight {
     public void setValue(double value) {
         this.value = value;
     }
-
     public Carriage getCarriage() {
         return carriage;
     }

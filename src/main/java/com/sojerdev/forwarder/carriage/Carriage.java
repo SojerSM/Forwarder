@@ -24,6 +24,9 @@ public class Carriage {
     @Column(name="price_per_km")
     private double pricePerKm;
 
+    @Column(name="adr")
+    private boolean adr;
+
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="forwarder_id")
@@ -39,10 +42,11 @@ public class Carriage {
 
     public Carriage() {}
 
-    public Carriage(String plates, double pricePerKm, Forwarder forwarder) {
+    public Carriage(String plates, double pricePerKm, Forwarder forwarder, boolean adr) {
         this.plates = plates;
         this.pricePerKm = pricePerKm;
         this.forwarder = forwarder;
+        this.adr = adr;
     }
 
     public int getId() {
@@ -67,6 +71,14 @@ public class Carriage {
 
     public void setPricePerKm(double pricePerKm) {
         this.pricePerKm = pricePerKm;
+    }
+
+    public boolean isAdr() {
+        return adr;
+    }
+
+    public void setAdr(boolean adr) {
+        this.adr = adr;
     }
 
     public Forwarder getForwarder() {

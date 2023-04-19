@@ -46,6 +46,7 @@ public class FreightServiceImpl implements FreightService {
         if (carriage.getDriver() == null) {
             throw new RuntimeException("Given carriage doesn't have any driver assigned.");
         }
+
         freightRepository.save(freight);
     }
 
