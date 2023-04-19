@@ -47,6 +47,9 @@ public class FreightServiceImpl implements FreightService {
             throw new RuntimeException("Given carriage doesn't have any driver assigned.");
         }
 
+        if (freight.isAdr() && !carriage.isAdr()) {
+            throw new RuntimeException("Carriage doesn't meet given freight requirements.");
+        }
         freightRepository.save(freight);
     }
 

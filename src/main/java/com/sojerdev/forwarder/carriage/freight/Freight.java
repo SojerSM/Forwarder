@@ -25,6 +25,9 @@ public class Freight {
     @Column(name="value")
     private double value;
 
+    @Column(name="adr")
+    private boolean adr;
+
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="carriage_id")
@@ -32,12 +35,13 @@ public class Freight {
 
     public Freight() {}
 
-    public Freight(String orderNumber, int distance, String companyName, double value, Carriage carriage) {
+    public Freight(String orderNumber, int distance, String companyName, double value, Carriage carriage, boolean adr) {
         this.orderNumber = orderNumber;
         this.distance = distance;
         this.companyName = companyName;
         this.value = value;
         this.carriage = carriage;
+        this.adr = adr;
     }
 
     public int getId() {
@@ -79,6 +83,15 @@ public class Freight {
     public void setValue(double value) {
         this.value = value;
     }
+
+    public boolean isAdr() {
+        return adr;
+    }
+
+    public void setAdr(boolean adr) {
+        this.adr = adr;
+    }
+
     public Carriage getCarriage() {
         return carriage;
     }
