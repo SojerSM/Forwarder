@@ -4,10 +4,12 @@ package com.sojerdev.forwarder.carriage.driver;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sojerdev.forwarder.carriage.Carriage;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.Date;
 
 @Entity
+@Data
 @Table(name="driver")
 public class Driver {
 
@@ -32,62 +34,4 @@ public class Driver {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="carriage_id")
     private Carriage carriage;
-
-    public Driver() {}
-
-    public Driver(String firstName, String lastName, Carriage carriage, Date dob, String licenceNumber) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.carriage = carriage;
-        this.dob = dob;
-        this.licenceNumber = licenceNumber;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Date getDob() {
-        return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
-
-    public String getLicenceNumber() {
-        return licenceNumber;
-    }
-
-    public void setLicenceNumber(String licenceNumber) {
-        this.licenceNumber = licenceNumber;
-    }
-
-    public Carriage getCarriage() {
-        return carriage;
-    }
-
-    public void setCarriage(Carriage carriage) {
-        this.carriage = carriage;
-    }
 }

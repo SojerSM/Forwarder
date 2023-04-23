@@ -6,10 +6,12 @@ import com.sojerdev.forwarder.carriage.driver.Driver;
 import com.sojerdev.forwarder.forwarder.Forwarder;
 import com.sojerdev.forwarder.carriage.freight.Freight;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.List;
 
 @Entity
+@Data
 @Table(name="carriage")
 public class Carriage {
 
@@ -39,69 +41,4 @@ public class Carriage {
     @JsonManagedReference
     @OneToMany(mappedBy = "carriage", cascade = CascadeType.ALL)
     private List<Freight> freights;
-
-    public Carriage() {}
-
-    public Carriage(String plates, double pricePerKm, Forwarder forwarder, boolean adr) {
-        this.plates = plates;
-        this.pricePerKm = pricePerKm;
-        this.forwarder = forwarder;
-        this.adr = adr;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getPlates() {
-        return plates;
-    }
-
-    public void setPlates(String plates) {
-        this.plates = plates;
-    }
-
-    public double getPricePerKm() {
-        return pricePerKm;
-    }
-
-    public void setPricePerKm(double pricePerKm) {
-        this.pricePerKm = pricePerKm;
-    }
-
-    public boolean isAdr() {
-        return adr;
-    }
-
-    public void setAdr(boolean adr) {
-        this.adr = adr;
-    }
-
-    public Forwarder getForwarder() {
-        return forwarder;
-    }
-
-    public void setForwarder(Forwarder forwarder) {
-        this.forwarder = forwarder;
-    }
-
-    public Driver getDriver() {
-        return driver;
-    }
-
-    public void setDriver(Driver driver) {
-        this.driver = driver;
-    }
-
-    public List<Freight> getFreights() {
-        return freights;
-    }
-
-    public void setFreights(List<Freight> freights) {
-        this.freights = freights;
-    }
 }
